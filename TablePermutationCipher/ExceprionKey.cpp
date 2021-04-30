@@ -25,9 +25,9 @@ bool ExceptionKey::check_key ( const wstring data,const string str_key )
     int key_Res;
     try {
         if (str_key.empty())
-            throw ExceptionKey(2,"вы ввели пустой ключ.","Ключ должен быть целым положительным числом и не превашать размера строки.");
+            throw ExceptionKey(2,"вы ввели пустой ключ.","Ключ должен быть натуральным числом и не превашать размера строки.");
         if (str_key.find_first_not_of("0123456789",0)!=string::npos) {
-            throw ExceptionKey(3,"вы ввели недопустимый ключ.","Ключ должен быть целым положительным числом и не превашать размера строки.");
+            throw ExceptionKey(3,"вы ввели недопустимый ключ.","Ключ должен быть натуральным числом и не превашать размера строки.");
         }
         key_Res = stoi(str_key);
         const int dlinastroki = data.size();
