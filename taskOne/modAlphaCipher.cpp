@@ -41,16 +41,14 @@ inline wstring modAlphaCipher::convert(const vector<int>& v)
 }
 inline wstring modAlphaCipher::getValidKey(const wstring & s)
 {
-    wstring EnglishAlphabet = L"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    if (s.find_last_of(EnglishAlphabet, 0) != string::npos)
-        throw MyExceptions(string("в вашем ключе используются символы английского алфавита."), 1, "Программа может работать с ключом, который состоит только из русских букв.");
-    
+    locale loc("ru_RU.UTF-8");
+    locale::global(loc);
     if (s.size()==0)
-        throw MyExceptions(string("вы ввели пустой ключ."), 2, "Ключ должен состоять только из строки русских букв.");
+        throw MyExceptions(string("вы ввели пустой ключ."), 1, "Ключ должен состоять только из строки русских букв.");
     wstring wst = s;
     for (size_t i = 0; i < wst.size(); i++) {
         if (iswalpha(wst[i])==0) {
-            throw MyExceptions(string("в вашем ключе присутствуют недопустимые символы."), 3, "Ключ должен состоять только из строки русских букв.");
+            throw MyExceptions(string("в вашем ключе присутствуют недопустимые символы."), 2, "Ключ должен состоять только из строки русских букв.");
             break;
         }
         if (iswlower(wst[i]))
@@ -61,16 +59,14 @@ inline wstring modAlphaCipher::getValidKey(const wstring & s)
 
 inline wstring modAlphaCipher::getValidAlphabetText(const wstring & s)
 {
-    wstring EnglishAlphabet = L"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    if (s.find_first_not_of(EnglishAlphabet, 0) != string::npos)
-        throw MyExceptions(string("в вашем тексте используются символы английского алфавита."), 4, "Программа может зашифровать/расшифровать тексты, которые состоят только из русских букв.");
-    
+    locale loc("ru_RU.UTF-8");
+    locale::global(loc);
     if (s.size()==0)
-        throw MyExceptions(string("вы ввели пустой текст."), 5, "Текст должен состоять только из строки русских букв.");
+        throw MyExceptions(string("вы ввели пустой текст."), 3, "Текст должен состоять только из строки русских букв.");
     wstring wst = s;
     for (size_t i = 0; i < wst.size(); i++) {
         if (iswalpha(wst[i])==0) {
-            throw MyExceptions(string("в вашем тексте присутствуют недопустимые символы."), 6, "Текст должен состоять только из строки русских букв.");
+            throw MyExceptions(string("в вашем тексте присутствуют недопустимые символы."), 4, "Текст должен состоять только из строки русских букв.");
             break;
         }
         if (iswlower(wst[i]))
