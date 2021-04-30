@@ -43,15 +43,17 @@ wstring PermutationCipher::DecodePermutationCipher(PermutationCipher key, wstrin
                 matr[j][i] = data[index];
                 index++;
             } else {
-                matr[j][i] = ' ';
-                index++;
+                matr[j][i] = '\0';
             }
         }
     }
     Result.resize(stroki*key.key); // устанавливаем размер строки, чтобы не было ошибок с памятью
     for(auto i = 0; i < stroki; i++) {
         for (auto j = 0; j< key.key; j++) {
-            Result.push_back(matr[i][j]);
+            if (matr[i][j] == '\0') {}
+            else {
+                Result.push_back(matr[i][j]);
+            }
         }
     }
     return Result;

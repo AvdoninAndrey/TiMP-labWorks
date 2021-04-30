@@ -9,7 +9,9 @@ protected:
     int num;
     string correction;
 public:
-    virtual void what () = 0;
+    virtual string what () = 0;
+    virtual int code () = 0;
+    virtual string fix () = 0;
 };
 
 

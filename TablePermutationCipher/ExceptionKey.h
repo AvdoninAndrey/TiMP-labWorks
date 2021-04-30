@@ -3,7 +3,10 @@
 class ExceptionKey : protected Exception
 {
 public:
-ExceptionKey (const int &num,const string &error, const string& correction);
-void what ();
-static bool check_key (const wstring &data, const int &key);
+    ExceptionKey() = delete;
+    ExceptionKey (const int &num,const string &error, const string& correction);
+    string what () override;
+    string fix () override;
+    int code () override;
+    static bool check_key (const wstring data,const string  str_key);
 };
