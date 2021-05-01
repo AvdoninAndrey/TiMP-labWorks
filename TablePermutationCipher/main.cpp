@@ -51,8 +51,8 @@ int main()
                 wstring wstren = codec.from_bytes(str);
                 ExceptionKey::check_key(wstren, str_key);
                 int key = stoi(str_key);
-                PermutationCipher encode(key);
-                cout<<codec.to_bytes(encode.EncodePermutationCipher(encode,wstren))<<endl;
+                PermutationCipher dec(key);
+                cout<<codec.to_bytes(dec.DecodePermutationCipher(dec,wstren))<<endl;
             } catch(ExceptionKey & exKey) {
                 cout << "Код ошибки:" << exKey.code()<< endl;
                 cout<<exKey.what()<<endl;
