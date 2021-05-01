@@ -8,5 +8,5 @@ public:
     string what () override;
     string fix () override;
     int code () override;
-    static bool check_key (const wstring data,const string  str_key);
+    static bool check_key (const wstring &data,const string  str_key);
 };

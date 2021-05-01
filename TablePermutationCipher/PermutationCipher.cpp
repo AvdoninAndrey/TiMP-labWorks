@@ -21,12 +21,16 @@ wstring PermutationCipher::EncodePermutationCipher(PermutationCipher key, wstrin
             }
         }
     }
-    Result.resize(stroki*key.key); // устанавливаем размер строки, чтобы не было ошибок с памятью
+    
+    index=0;
     for (auto i = 0; i < key.key; i++) {
         for (auto j = 0; j < stroki; j++ ) {
-            Result.push_back(matr[j][i]);
+            if (index <= data.size())
+                Result.push_back(matr[j][i]);
+                index++;
         }
     }
+    Result[index] = '\0';
     return Result;
 }
 
@@ -43,18 +47,19 @@ wstring PermutationCipher::DecodePermutationCipher(PermutationCipher key, wstrin
                 matr[j][i] = data[index];
                 index++;
             } else {
-                matr[j][i] = '\0';
+                matr[j][i] = ' ';
+                index++;
             }
         }
     }
-    Result.resize(stroki*key.key); // устанавливаем размер строки, чтобы не было ошибок с памятью
+    index = 0;
     for(auto i = 0; i < stroki; i++) {
         for (auto j = 0; j< key.key; j++) {
-            if (matr[i][j] == '\0') {}
-            else {
+            if (index<data.size())
                 Result.push_back(matr[i][j]);
-            }
+                index++;
         }
     }
+    Result[index] = '\0';
     return Result;
 }

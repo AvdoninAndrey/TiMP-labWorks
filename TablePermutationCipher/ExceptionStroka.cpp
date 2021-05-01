@@ -22,16 +22,7 @@ string ExceptionStroka::fix ()
 
 bool ExceptionStroka::check_stroka ( const string data )
 {
-    
-    try {
-        if (data.empty()) 
-            throw ExceptionStroka (1, "вы ввели пустую строку.", "При вводе используйте любые символы.");
-        return true;
-    }
-    catch (ExceptionStroka &ex) {
-        cout << "Код ошибки:" << ex.code()<< endl;
-        cout<<ex.what()<<endl;
-        cout<<ex.fix()<<endl;
-        return false;
-    }
+    if (data.empty())
+        throw ExceptionStroka (1, "вы ввели пустую строку.", "При вводе используйте любые символы.");
+    return true;
 }

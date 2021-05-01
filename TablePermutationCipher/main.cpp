@@ -19,34 +19,49 @@ int main()
         if (mode == "Encode") {
             cout << "Введите строку для шифрования:";
             getline(cin, str);
-            if (ExceptionStroka::check_stroka(str)) {
+            try {
+                ExceptionStroka::check_stroka(str);
                 cout << "Введите ключ:";
                 getline(cin, str_key);
                 wstring_convert<codecvt_utf8<wchar_t>, wchar_t> codec;
                 wstring wstren = codec.from_bytes(str);
-                if (ExceptionKey::check_key(wstren, str_key)) {
-                    int key = stoi(str_key);
-                    PermutationCipher encode(key);
-                    cout<<codec.to_bytes(encode.EncodePermutationCipher(encode,wstren))<<endl;
-                }
+                ExceptionKey::check_key(wstren, str_key);
+                int key = stoi(str_key);
+                PermutationCipher encode(key);
+                cout<<codec.to_bytes(encode.EncodePermutationCipher(encode,wstren))<<endl;
+            } catch(ExceptionKey & exKey) {
+                cout << "Код ошибки:" << exKey.code()<< endl;
+                cout<<exKey.what()<<endl;
+                cout<<exKey.fix()<<endl;
+            } catch(ExceptionStroka & exStr) {
+                cout << "Код ошибки:" << exStr.code()<< endl;
+                cout<<exStr.what()<<endl;
+                cout<<exStr.fix()<<endl;
             }
         }
 
         if (mode == "Decode") {
             cout << "Введите строку для расшифрования:";
             getline(cin, str);
-            if (ExceptionStroka::check_stroka(str)) {
+            try {
+                ExceptionStroka::check_stroka(str);
                 cout << "Введите ключ:";
                 getline(cin, str_key);
                 wstring_convert<codecvt_utf8<wchar_t>, wchar_t> codec;
                 wstring wstren = codec.from_bytes(str);
-                if (ExceptionKey::check_key(wstren, str_key)) {
-                    int key = stoi(str_key);
-                    PermutationCipher decode(key);
-                    cout<<codec.to_bytes(decode.DecodePermutationCipher(decode,wstren))<<endl;
-                }
+                ExceptionKey::check_key(wstren, str_key);
+                int key = stoi(str_key);
+                PermutationCipher encode(key);
+                cout<<codec.to_bytes(encode.EncodePermutationCipher(encode,wstren))<<endl;
+            } catch(ExceptionKey & exKey) {
+                cout << "Код ошибки:" << exKey.code()<< endl;
+                cout<<exKey.what()<<endl;
+                cout<<exKey.fix()<<endl;
+            } catch(ExceptionStroka & exStr) {
+                cout << "Код ошибки:" << exStr.code()<< endl;
+                cout<<exStr.what()<<endl;
+                cout<<exStr.fix()<<endl;
             }
-
         }
         if (mode == "exit") {
             cout << "Программа завершила работу." << endl;
