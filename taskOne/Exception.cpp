@@ -5,10 +5,10 @@ MyExceptions::MyExceptions(const string & error, const int &num, const string &f
     this->num = num;
     this->correction = fix;
 }
-int  MyExceptions::code()
+void  MyExceptions::code()
 {
-    return num;
+    cout<< "Код ошибки: " << num << endl;
 }
-string MyExceptions::fix() {
-    return correction;
+void MyExceptions::fix() {
+    cout<< correction << endl;
     }

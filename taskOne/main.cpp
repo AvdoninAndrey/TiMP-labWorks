@@ -1,4 +1,3 @@
-#include <iostream>
 #include "modAlphaCipher.h"
 #include "Exception.h"
 #include <codecvt>
@@ -31,9 +30,9 @@ int main ()
                 wstring_convert<codecvt_utf8<wchar_t>, wchar_t> codec;
                 cout<<codec.to_bytes(cipherText)<<endl;
             } catch (MyExceptions & ex) {
-                cout << "Код ошибки: "<<ex.code() << endl;
+                ex.code();
                 cout << "Описание ошибки: "<<ex.what() << endl;
-                cout << ex.fix() << endl;
+                ex.fix();
             }
         }
         if (mode == L"Decode") {
@@ -48,9 +47,9 @@ int main ()
                 wstring_convert<codecvt_utf8<wchar_t>, wchar_t> codec;
                 cout<<codec.to_bytes(OpenText)<<endl;
             } catch (MyExceptions & ex) {
-                cout << "Код ошибки: "<<ex.code() << endl;
+                ex.code() ;
                 cout << "Описание ошибки: "<<ex.what() << endl;
-                cout << ex.fix() << endl;
+                ex.fix();
             }
         }
         if (mode == L"exit") {

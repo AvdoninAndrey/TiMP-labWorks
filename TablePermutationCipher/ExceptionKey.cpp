@@ -30,7 +30,7 @@ bool ExceptionKey::check_key ( const wstring &data,const string str_key )
     }
     key_Res = stoi(str_key);
     const int dlinastroki = data.size();
-    if (key_Res > dlinastroki-1 || key_Res <= 0) {
+    if (key_Res > dlinastroki || key_Res <= 0) {
         throw ExceptionKey(4,"некорректный ключ.","Ключ должен быть натуральным числом и не превашать размера строки.");
     }
     return true;
